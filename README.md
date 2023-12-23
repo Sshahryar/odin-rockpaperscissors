@@ -4,4 +4,4 @@ Third project from "The Odin Project" (TOP) open source web developing curriculu
 
 Web app project, designing a simple rockpaperscissors game using JavaScript. 
 
-Web app:
+Web app: https://sshahryar.github.io/odin-rockpaperscissors/
