@@ -35,7 +35,6 @@ if (winConditions[playerChoice] === computerChoice) {
   }
 }
 
-
 function game(rounds) {
 
   let currentRound = 1;
