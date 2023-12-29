@@ -36,7 +36,8 @@ if (winConditions[playerChoice] === computerChoice) {
 }
 
 function game(rounds) {
-
+  // Commenting out the following code as required by the "Revisitng Rock Paper Scissors" assignment.
+  /* 
   let currentRound = 1;
 
   while (currentRound <= rounds) {
@@ -46,9 +47,13 @@ function game(rounds) {
     alert(result);
 
     currentRound++;
-  }
+  } 
+  */
 
   alert("Game ended");
 
 }
+// Commenting out the following code as required by the "Revisitng Rock Paper Scissors" assignment.
+  /* 
 game (5);
+  */
