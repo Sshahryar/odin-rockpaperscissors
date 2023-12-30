@@ -36,7 +36,7 @@ if (winConditions[playerChoice] === computerChoice) {
 }
 
 function game(rounds) {
-  // Commenting out the following code as required by the "Revisitng Rock Paper Scissors" assignment.
+  // Commenting out the following code as required by the "Revisiting Rock Paper Scissors" assignment.
   /* 
   let currentRound = 1;
 
