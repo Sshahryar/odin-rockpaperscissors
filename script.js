@@ -50,7 +50,7 @@ function game(rounds) {
   } 
   */
 
-  alert("Game ended");
+  document.getElementById('result-display').innerText = `Result: ${result}`;
 
 }
 // Commenting out the following code as required by the "Revisitng Rock Paper Scissors" assignment.
