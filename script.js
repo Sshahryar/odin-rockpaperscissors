@@ -1,3 +1,6 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
   const choices = ['Rock', 'Paper', 'Scissors']
 
@@ -19,56 +22,49 @@ function playRound (playerSelection, computerSelection) {
  
   if (playerChoice === computerChoice) {
     return "Tie";
-  } else {
+  }
     const winConditions = {
-      rock: 'scissors',
-      paper: 'rock',
-      scissors: 'paper'
+    rock: 'scissors',
+    paper: 'rock',
+    scissors: 'paper'
     };
 
 if (winConditions[playerChoice] === computerChoice) {
-
-  return "Win";
+    playerScore++;
+    return `You win! ${playerChoice} beats ${computerChoice}.`;
 } else {
-  return "Lose";
+    computerScore++;
+    return `You lose! ${computerChoice} beats ${playerChoice}.`;
     }
   }
+
+function updateDisplay(result) {
+    const resultDisplay = document.getElementById('result-display');
+    const scoreDisplay = document.getElementById('score-display');
+
+    resultDisplay.textContent = result;
+    scoreDisplay.textContent = `Score - Player ${playerScore}, Computer: ${computerScore}`;
+
+    if (playerScore === 5 || computerScore === 5) {
+        const winner = playerScore === 5 ? 'Player' : 'Computer';
+        resultDisplay.textContent = `Game over! ${winner} wins!`;
+
+        document.getElementById('rock').disabled = true;
+        document.getElementById('paper').disabled = true;
+        document.getElementById('scissors').disabled = true;
+    }
 }
-
-function game(rounds) {
-  // Commenting out the following code as required by the "Revisiting Rock Paper Scissors" assignment.
-  /* 
-  let currentRound = 1;
-
-  while (currentRound <= rounds) {
-    const playerSelection = prompt("Enter: rock, paper, scissors")
-    const computerSelection = getComputerChoice();
-    const result = playRound(playerSelection, computerSelection);
-    alert(result);
-
-    currentRound++;
-  } 
-  */
-
-  document.getElementById('result-display').innerText = `Result: ${result}`;
-
-}
-// Commenting out the following code as required by the "Revisitng Rock Paper Scissors" assignment.
-  /* 
-game (5);
-  */
-
 document.getElementById('rock').addEventListener('click', function () {
   const result = playRound('rock', getComputerChoice());
-  console.log(result);                     
+  updateDisplay(result);
 });
 
 document.getElementById('paper').addEventListener('click', function () {
   const result = playRound('paper', getComputerChoice());
-  console.log(result);                     
+  updateDisplay(result);
 });
 
 document.getElementById('scissors').addEventListener('click', function () {
   const result = playRound('scissors', getComputerChoice());
-  console.log(result);                     
+  updateDisplay(result);
 });
