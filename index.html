@@ -1,21 +1,27 @@
 <!DOCTYPE html>
-
 <html>
-    
+
 <head>
-    <title> rockpaperscissors </title>
+    <title>rockpaperscissors</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
 
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
+<div class="container">
+    <div id="game-container">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+        <div id="result-display"></div>
+    </div>
+    <div id="score-container">
+        <div id="score-display">Score - Player 0, Computer: 0</div>
+        <button id="replay" disabled>Replay</button>
+    </div>
+</div>
 
-    <div id="result-display"></div>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 
