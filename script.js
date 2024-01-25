@@ -1,54 +1,86 @@
-function getComputerChoice() {
-  const choices = ['Rock', 'Paper', 'Scissors']
+let playerScore = 0;
+let computerScore = 0;
+let rounds = 5;
+let currentRound = 1;
 
-  return choices [getRandomChoice()]; 
+function getComputerChoice() {
+    const choices = ['Rock', 'Paper', 'Scissors']
+    return choices[getRandomChoice()];
 }
 
 function getRandomChoice() {
-  
-  return (getRandomChoice.counter++ % 3);
+    return Math.floor(Math.random() * 3);
 }
 
-getRandomChoice.counter=0;
+getRandomChoice.counter = 0;
 
-function playRound (playerSelection, computerSelection) {
-  
-  const playerChoice = playerSelection.toLowerCase();
-  const computerChoice = getComputerChoice().toLowerCase();
+function playRound(playerSelection, computerSelection) {
+    const playerChoice = playerSelection.toLowerCase();
+    const computerChoice = getComputerChoice().toLowerCase();
 
- 
-  if (playerChoice === computerChoice) {
-    return "Tie";
-  } else {
+    if (playerChoice === computerChoice) {
+        return "Tie";
+    }
     const winConditions = {
-      rock: 'scissors',
-      paper: 'rock',
-      scissors: 'paper'
+        rock: 'scissors',
+        paper: 'rock',
+        scissors: 'paper'
     };
 
-if (winConditions[playerChoice] === computerChoice) {
-
-  return "Win";
-} else {
-  return "Lose";
+    if (winConditions[playerChoice] === computerChoice) {
+        playerScore++;
+        return `You win! ${playerChoice} beats ${computerChoice}.`;
+    } else {
+        computerScore++;
+        return `You lose! ${computerChoice} beats ${playerChoice}.`;
     }
-  }
 }
 
-function game(rounds) {
+function updateDisplay(result) {
+    const resultDisplay = document.getElementById('result-display');
+    const scoreDisplay = document.getElementById('score-display');
+    const replayButton = document.getElementById('replay');
 
-  let currentRound = 1;
+    resultDisplay.textContent = result;
+    scoreDisplay.textContent = `Score - Player ${playerScore}, Computer: ${computerScore}`;
 
-  while (currentRound <= rounds) {
-    const playerSelection = prompt("Enter: rock, paper, scissors")
-    const computerSelection = getComputerChoice();
-    const result = playRound(playerSelection, computerSelection);
-    alert(result);
+    if (playerScore === 5 || computerScore === 5) {
+        const winner = playerScore === 5 ? 'Player' : 'Computer';
+        resultDisplay.textContent = `Game over! ${winner} wins!`;
 
-    currentRound++;
-  }
-
-  alert("Game ended");
-
+        document.getElementById('rock').disabled = true;
+        document.getElementById('paper').disabled = true;
+        document.getElementById('scissors').disabled = true;
+        replayButton.disabled = false;
+    }
 }
-game (5);
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    currentRound = 1;
+
+    document.getElementById('rock').disabled = false;
+    document.getElementById('paper').disabled = false;
+    document.getElementById('scissors').disabled = false;
+    document.getElementById('replay').disabled = true;
+
+    updateDisplay('');
+}
+
+document.getElementById('rock').addEventListener('click', function () {
+    const result = playRound('rock', getComputerChoice());
+    updateDisplay(result);
+});
+
+document.getElementById('paper').addEventListener('click', function () {
+    const result = playRound('paper', getComputerChoice());
+    updateDisplay(result);
+});
+
+document.getElementById('scissors').addEventListener('click', function () {
+    const result = playRound('scissors', getComputerChoice());
+    updateDisplay(result);
+});
+
+document.getElementById('replay').addEventListener('click', resetGame);
